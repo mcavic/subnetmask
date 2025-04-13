@@ -1,7 +1,0 @@
-
-Add menu bar and additional tools:
-
-IPv6 calculator
-Base converter (dec, bin, oct, hex)
-Base64 converter
-ASCII Table (dec, oct, hex)
