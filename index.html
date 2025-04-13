@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="STYLESHEET" href="style.css" type="text/css">
+<title>IPv4 Subnet Calculator</title>
+<script language="JavaScript" src="cookies.js" type="text/javascript"></script>
+<script language="JavaScript" src="conversion.js" type="text/javascript"></script>
+<script language="JavaScript" src="ipv4.js" type="text/javascript"></script>
+</head>
+
+<body onload="initPage();" vlink="#ffcc33" xxtext="#ffcc33" text="#ffffff" link="#ffcc33" bgcolor="#000000" alink="#ff3300">
+<br>
+<form action="" method="post">
+<table cellspacing="0" cellpadding="1" border="0">
+<tr>
+	<td colspan="3">
+		<h4>Subnet Mask Calculator</h4>
+		<hr><br>
+	</td>
+</tr>
+
+<tr>
+	<td>Enter the TCP/IP Network Address:</td>
+	<td align="right">
+		<input type="text" name="oct1" size="3" maxlength="3" onkeyup="Jump()" value="10">
+		<input type="text" name="oct2" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="oct3" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="oct4" size="3" maxlength="3" value="0">
+	</td>
+	<td width="150" align="right">
+		<input type="button" value="Clear All" onclick="ClearAll(this.form)" class="button">
+	</td>
+</tr>
+
+<tr>
+	<td>Force as Class:</td>
+	<td align="right">
+		<input type="radio" value="1" name="cf" checked="checked">Default
+		<input type="radio" value="2" name="cf">Class A
+		<input type="radio" value="3" name="cf">Class B
+		<input type="radio" value="4" name="cf">Class C
+		</td>
+	<td width="150" align="right"></td>
+</tr>
+
+<tr>
+	<td>Enter the required number of sub-networks:</td>
+	<td align="right">
+		<select name="network" size="1" onchange="EmptyHosts()">
+			<option value="0" selected="selected"></option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="4">4</option>
+			<option value="8">8</option>
+			<option value="16">16</option>
+			<option value="32">32</option>
+			<option value="64">64</option>
+			<option value="128">128</option>
+			<option value="256">256</option>
+			<option value="512">512</option>
+			<option value="1024">1024</option>
+			<option value="2048">2048</option>
+			<option value="4096">4096</option>
+			<option value="8192">8192</option>
+			<option value="16384">16384</option>
+			<option value="32768">32768</option>
+			<option value="65536">65536</option>
+			<option value="131072">131072</option>
+			<option value="262144">262144</option>
+			<option value="524288">524288</option>
+			<option value="1048576">1048576</option>
+			<option value="2097152">2097152</option>
+			<option value="4194304">4194304</option>
+			<option value="8388608">8388608</option>
+		</select>		
+		</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td width="300">OR enter the required number of nodes/hosts per network 
+		<font size="-2">(including network &amp; broadcast addresses)</font>:
+		</td>
+
+	<td align="right">
+		<select name="node" size="1" onchange="EmptyNetwork()">
+			<option value="0" selected="selected"></option>
+			<option value="2">2</option>
+			<option value="4">4</option>
+			<option value="8">8</option>
+			<option value="16">16</option>
+			<option value="32">32</option>
+			<option value="64">64</option>
+			<option value="128">128</option>
+			<option value="256">256</option>
+			<option value="512">512</option>
+			<option value="1024">1024</option>
+			<option value="2048">2048</option>
+			<option value="4096">4096</option>
+			<option value="8192">8192</option>
+			<option value="16384">16384</option>
+			<option value="32768">32768</option>
+			<option value="65536">65536</option>
+			<option value="131072">131072</option>
+			<option value="262144">262144</option>
+			<option value="524288">524288</option>
+			<option value="1048576">1048576</option>
+			<option value="2097152">2097152</option>
+			<option value="4194304">4194304</option>
+			<option value="8388608">8388608</option>
+			<option value="16777216">16777216</option>
+			<option value="33554432">33554432</option>
+			<option value="67108864">67108864</option>
+			<option value="134217728">134217728</option>
+			<option value="268435456">268435456</option>
+			<option value="536870912">536870912</option>
+			<option value="1073741824">1073741824</option>
+			<option value="2147483648">2147483648</option>
+		</select>		
+	</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="compute2(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td colspan="3"><br><hr><br></td>
+</tr>
+
+<tr>
+	<td>Network Class:</td>
+	<td align="right">
+		<input type="text" name="nwclass" size="7" maxlength="7" value="Class A">
+		<input type="text" name="subsuper" size="14" maxlength="14" value="Subnetted as">
+		<input type="text" name="nwclass1" size="7" maxlength="7" value="Class A">
+		</td>
+	<td></td>	
+</tr>
+
+<tr>
+	<td>Subnet Mask:</td>
+	<td align="right">
+		<input type="text" name="snm1" size="3" maxlength="3" value="255">
+		<input type="text" name="snm2" size="3" maxlength="3" value="0">
+		<input type="text" name="snm3" size="3" maxlength="3" value="0">
+		<input type="text" name="snm4" size="3" maxlength="3" value="0"> or 
+		<input type="text" name="snmbits" size="3" maxlength="3" value="/8">
+		</td>
+	<td></td>	
+</tr>
+
+<tr>
+	<td>Subnets:</td>
+	<td align="right">
+		<input type="text" name="nwquant" size="10" maxlength="8" value="1">
+		</td>
+	<td align="right">
+		<input type="button" value="List Networks" onclick="listsubnets(this.form)" class="button">
+		</td>	
+</tr>
+
+<tr>
+	<td>Nodes/Hosts per Network 
+		<font size="-2">(including network and broadcast addresses)***
+		</font>:
+		</td>
+	<td align="right">
+		<input type="text" name="nodequant" size="10" maxlength="8" value="16777216">
+		</td>
+</tr>
+
+<tr>
+	<td colspan='3'><br><hr><br></td>
+</tr>
+
+<tr>
+	<td colspan="3"><h4>Network/Node Calculator</h4></td>
+</tr>
+
+<tr>
+	<td>Enter the Subnet Mask:</td>
+	<td align="right">
+		<input type="text" name="snm1a" size="3" maxlength="3" onkeyup="Jump()" value="255">
+		<input type="text" name="snm2a" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm3a" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm4a" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Enter the TCPIP Address:</td>
+	<td align="right">
+		<input type="text" name="oct1a" size="3" maxlength="3" onkeyup="Jump()" value="10">
+		<input type="text" name="oct2a" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="oct3a" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="oct4a" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="compute(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td colspan="3"><br><hr><br></td>
+</tr>
+
+<tr>
+	<td>Network:</td>
+	<td align="right">
+		<input type="text" name="nw1a" size="3" maxlength="3" value="10">
+		<input type="text" name="nw2a" size="3" maxlength="3" value="0">
+		<input type="text" name="nw3a" size="3" maxlength="3" value="0">
+		<input type="text" name="nw4a" size="3" maxlength="3" value="0">
+		</td>
+	<td></td>	
+</tr>
+
+<tr>
+	<td>Node/Host:</td>
+	<td align="right">
+		<input type="text" name="node1a" size="3" maxlength="3" value="0">
+		<input type="text" name="node2a" size="3" maxlength="3" value="0">
+		<input type="text" name="node3a" size="3" maxlength="3" value="0">
+		<input type="text" name="node4a" size="3" maxlength="3" value="0">
+		</td>
+	<td></td>	
+</tr>
+
+<tr>
+	<td>Broadcast Address:</td>
+	<td align="right">
+		<input type="text" name="broad1a" size="3" maxlength="3" value="10">
+		<input type="text" name="broad2a" size="3" maxlength="3" value="255">
+		<input type="text" name="broad3a" size="3" maxlength="3" value="255">
+		<input type="text" name="broad4a" size="3" maxlength="3" value="255">
+		</td>
+</tr>
+
+<tr>
+	<td colspan="3"><br><hr><br></td>
+</tr>
+
+<tr>
+	<td colspan="3"><h4>IP Address Converter</h4></td>
+</tr>
+
+<tr>
+	<td>Enter the dotted decimal TCPIP Address:</td>
+	<td align="right">
+		<input type="text" name="oct1b" size="3" maxlength="3" onkeyup="Jump()" value="10">
+		<input type="text" name="oct2b" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="oct3b" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="oct4b" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="compute3(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td> or Enter the binary TCPIP Address:</td>
+	<td align="right">
+		<input type="text" name="bin1b" size="8" maxlength="8" onkeyup="Jump()" value="00001010">
+		<input type="text" name="bin2b" size="8" maxlength="8" onkeyup="Jump()" value="00000000">
+		<input type="text" name="bin3b" size="8" maxlength="8" onkeyup="Jump()" value="00000000">
+		<input type="text" name="bin4b" size="8" maxlength="8" onkeyup="Jump()" value="00000000">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="compute4(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td> or Enter the hex TCPIP Address:</td>
+	<td align="right"><input type="text" name="hex1b" size="2" maxlength="2" onkeyup="Jump()" value="0A"><input type="text" name="hex2b" size="2" maxlength="2" onkeyup="Jump()" value="00"><input type="text" name="hex3b" size="2" maxlength="2" onkeyup="Jump()" value="00"><input type="text" name="hex4b" size="2" maxlength="2" onkeyup="Jump()" value="00"></td>
+	<td width="150" align="right"><input type="button" value="Calculate" onclick="compute5(this.form)" class="button"></td>
+</tr>
+
+<tr>
+	<td> or Enter the decimal TCPIP Address:</td>
+	<td align="right">
+		<input type="text" name="dec1b" size="10" maxlength="10" value="0">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="compute6(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td colspan="3"><br><hr><br></td>
+</tr>
+
+<tr>
+	<td colspan="3"><h4>Subnet Mask Converter</h4></td>
+</tr>
+
+<tr>
+	<td>Enter the dotted decimal Subnet Mask</td>
+	<td align="right">
+		<input type="text" name="snm1c" size="3" maxlength="3" onkeyup="Jump()" value="255">
+		<input type="text" name="snm2c" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm3c" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm4c" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="computeSNMA(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td>or Enter the number of bits in the subnetmask</td>
+	<td align="right">
+		/<input type="text" name="snmbitsc" size="2" maxlength="2" value="8">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="computeSNMB(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td colspan="3"><br><hr><br></td>
+</tr>
+
+<tr>
+	<td colspan="3"><h4>Subnet Mask Inverter</h4></td>
+</tr>
+
+<tr>
+	<td>Enter the dotted decimal Subnet Mask</td>
+	<td align="right">
+		<input type="text" name="snm1d" size="3" maxlength="3" onkeyup="Jump()" value="255">
+		<input type="text" name="snm2d" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm3d" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm4d" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		</td>
+	<td width="150" align="right">
+		<input type="button" value="Calculate" onclick="computeINV1(this.form)" class="button">
+		</td>
+</tr>
+
+<tr>
+	<td>Enter inverted Subnet Mask</td>
+	<td align="right">
+		<input type="text" name="snm1e" size="3" maxlength="3" onkeyup="Jump()" value="0">
+		<input type="text" name="snm2e" size="3" maxlength="3" onkeyup="Jump()" value="255">
+		<input type="text" name="snm3e" size="3" maxlength="3" onkeyup="Jump()" value="255">
+		<input type="text" name="snm4e" size="3" maxlength="3" onkeyup="Jump()" value="255">
+		</td>
+	<td width="150" align="right">&nbsp;</td>
+</tr>
+
+</table>
+</form>
+
+<br><hr><br><br><br>
+</body></html>

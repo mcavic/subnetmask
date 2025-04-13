@@ -1,0 +1,22 @@
+/*
+ * Style sheet for the HTML 4.0 specification
+ * $Id: default.css,v 1.12 1997/12/12 18:46:53 ijacobs Exp $
+ */
+
+H4 {color:#ffcc33;font-family: helvetica, sans-serif;font-size:larger}
+
+P {color:#ffcc33;font-family: helvetica, sans-serif}
+P.larger {color:#ffcc33;font-family: helvetica, sans-serif;font-size: 1.2em}
+
+BLOCKQUOTE {color:#ffcc33;font-family: helvetica, sans-serif}
+
+UL LI {color:#ffcc33;font-family: helvetica, sans-serif}
+
+A {color:#ffcc33;font-family: helvetica, sans-serif}
+A:hover {color:#FF3300}
+A:visited {color:#ffcc33}
+A:visited:hover {color:#FF3300;}
+A.hd {font-weight:bold;font-size:smaller;text-decoration:none}
+A.inline {font-style:italic}
+
+INPUT.button {width:7em}
